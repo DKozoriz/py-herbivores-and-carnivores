@@ -14,17 +14,14 @@ class Animal:
                 f"Health: {self.health}, "
                 f"Hidden: {self.hidden}}}")
 
+    def update_status(self) -> None:
+        if self.health <= 0 and self in Animal.alive:
+            Animal.alive.remove(self)
+
 
 class Herbivore(Animal):
     def hide(self) -> None:
-        if self.hidden is False:
-            self.hidden = True
-        else:
-            self.hidden = False
-
-    def dead(self) -> None:
-        if self.health <= 0:
-            Animal.alive.remove(self)
+        self.hidden = not self.hidden
 
 
 class Carnivore(Animal):
@@ -34,5 +31,4 @@ class Carnivore(Animal):
                 print(f"{self.name} cannot bite hidden {animal.name}")
             else:
                 animal.health -= 50
-                animal.dead()
-                print("bited")
+                animal.update_status()
