@@ -31,4 +31,4 @@ class Carnivore(Animal):
                 print(f"{self.name} cannot bite hidden {animal.name}")
             else:
                 animal.health -= 50
-                animal.update_status()
+            animal.update_status()
